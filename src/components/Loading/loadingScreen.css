@@ -1,0 +1,28 @@
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* height: 100vh; */
+    margin-top: 10px;
+  }
+  
+  .loading-icon {
+    width: 30px;
+    height: 30px;
+    border: 4px solid rgba(0, 0, 0, 0.3);
+    border-top: 4px solid #db3498; /* Loading icon color */
+    border-radius: 50%;
+    animation: spin 1s linear infinite; /* Rotate the loading icon */
+  }
+  
+  .loading-text {
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  

@@ -1,0 +1,27 @@
+/* Base button styles */
+.btn-secondary {
+    background-color: #f7941d;
+    /* Orange background color */
+    color: #fff;
+    /* White text color */
+    padding: 10px 20px;
+    /* Padding to adjust the button size */
+    border: none;
+    /* Remove border */
+    border-radius: 4px;
+    /* Rounded corners */
+    cursor: pointer;
+    /* Cursor style */
+    transition: background-color 0.3s, color 0.3s;
+    /* Transition effect */
+    height: 40px;
+    /* Fixed height */
+    color: #00203b;
+    font-weight: bold;
+}
+
+/* Hover effect */
+.btn-secondary:hover {
+    background-color: #e37d00;
+    /* Orange background color on hover */
+}

@@ -1,0 +1,70 @@
+/* ShopsList.css */
+
+/* Shop Card Styles */
+.shop-card {
+    width: 50%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.shop-card:hover {
+    transform: scale(1.02);
+    /* Hover effect for slight scaling */
+}
+
+/* Shop Header */
+.shop-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Shop Name */
+.shop-name {
+    font-size: 24px;
+    color: #1e3d59;
+    /* Royal blue text color */
+    margin-bottom: 10px;
+}
+
+/* Select Button */
+.select-button {
+    background-color: #f7941d;
+    /* Orange button color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.select-button:hover {
+    background-color: #1e3d59;
+    /* Royal blue hover color */
+}
+
+/* Shop Details */
+.shop-details p {
+    font-size: 16px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .shop-card {
+        width: 90%;
+        margin: 10px auto;
+    }
+}
+
+.shopsListContainer{
+    width: 100px;
+}

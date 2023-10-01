@@ -1,0 +1,88 @@
+/* Style for the form container */
+
+.registerForm, .loginForm , .verifyOTP{
+  margin-left: 20px;
+  margin-top: 10px;
+  /* width: 40%;
+  height: 100%; */
+}
+
+.form {
+  width: 100%;
+  height: 100%;
+  /* margin: 0 auto; */
+  /* margin-right: 220px; */
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Style for form inputs and labels */
+.form div {
+  display: flex;
+  /* Use flexbox to align label and input horizontally */
+  justify-content: space-between;
+  /* Maximizes space between label and input */
+  align-items: center;
+  /* Vertically centers label and input */
+  margin-bottom: 15px;
+  /* Add margin between input groups */
+}
+
+.form label {
+  font-weight: 450;
+  flex: 1;
+  /* Allow the label to grow and fill available space */
+  margin-right: 0px;
+  /* Add space between label and input */
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form input[type="password"],
+.form input[type="number"] {
+  flex: 2;
+  /* Allow the input to grow and fill available space */
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  font-size: 15px;
+}
+
+/* Style for form submit button */
+.form button, .btn-primary{
+  background-color: #3D5A80;
+  /* Change to your desired button color */
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+}
+
+.form button:hover {
+  background-color: #344c6b;
+  /* Change to a darker shade for hover effect */
+}
+
+.errorText{
+  color: rgb(196, 0, 0);
+  font-weight: 500;
+  font-size: 10px;
+}
+
+
+
+.otpEmail{
+  color: green;
+}
+
+.otpText{
+  display: flex;
+  flex-direction: row;
+}

@@ -1,0 +1,28 @@
+.authImage {
+    width: 63%;
+}
+
+body {
+    background-color: white;
+}
+
+.authContainer {
+    display: flex;
+    flex-direction: row;
+    /* justify-content: end; */
+    /* align-items: stretch; */
+}
+
+.newUserText {
+    font-size: 14px !important;
+    margin-left: 20px;
+    cursor: pointer;
+    color: #344c6b;
+    transition: all 0.1s linear;
+}
+
+.newUserText:hover {
+    font-size: 15px !important;
+    color: #23344a;
+    font-weight: 500;
+}

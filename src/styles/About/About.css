@@ -1,0 +1,80 @@
+/* About.css */
+
+/* Container for the About section */
+.about-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f4;
+    /* Background color */
+}
+
+/* Content wrapper for text and contact information */
+.about-content {
+    background-color: #fff;
+    /* Content background color */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Box shadow for depth */
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 600px;
+    text-align: center;
+}
+
+/* Heading styles */
+.about-text h2 {
+    font-size: 24px;
+    color: #1e3d59;
+    /* Royal blue text color */
+    margin-bottom: 20px;
+}
+
+/* Paragraph text styles */
+.about-text p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #666;
+    /* Text color */
+    margin-bottom: 10px;
+}
+
+/* Contact details container */
+.contact-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+/* Profile photo styles */
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 20px;
+    margin-top: 6px;
+}
+
+/* Contact info styles */
+.contact-info h3 {
+    font-size: 18px;
+    color: #1e3d59;
+    /* Royal blue text color */
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    font-size: 14px;
+    color: #f7941d;
+    /* Orange text color */
+    margin-bottom: 5px;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .about-content {
+        max-width: 90%;
+    }
+}
