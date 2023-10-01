@@ -1,11 +1,16 @@
 import React from 'react';
 import './ShopCard.css'; 
+import { useNavigate } from 'react-router-dom';
+import Cookies from 'js-cookie';
 
 const ShopCard = (props) => {
+  let navigate = useNavigate();
   console.log(props.data);
   let { ShopID, ShopName, Address, City, State, Country, PhoneNumber, AdminEmail } = props.data
   const handleSelect =()=>{
-    console.log(ShopName);
+    Cookies.set("shopId",ShopID);
+    Cookies.set("shopName",ShopName);
+    navigate('/dashboard')
   }
   return (
     <div className="shop-card">

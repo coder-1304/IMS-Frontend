@@ -9,9 +9,9 @@ import NoShops from "../components/Dashboard/NoShops";
 import "../styles/common.css";
 import "../styles/AddShop/AddShop.css";
 import ShopCard from "../components/Dashboard/ShopsList/ShopCard";
-import '../components/Dashboard/ShopsList/ShopCard.css'
+import "../components/Dashboard/ShopsList/ShopCard.css";
 
-const Dashboard = () => {
+const Shops = () => {
   const [activeOption, setActiveOption] = useState("Sell Products");
   const [loading, setLoading] = useState(true);
   const [noShops, setNoShops] = useState(false);
@@ -23,8 +23,8 @@ const Dashboard = () => {
       if (response.success) {
         if (response.result.length == 0) {
           setNoShops(true);
-        }else{
-          setShopsList(response.result)
+        } else {
+          setShopsList(response.result);
         }
         setLoading(false);
         // alert("Success " + "Length of shops: " + response.result.length);
@@ -41,56 +41,25 @@ const Dashboard = () => {
     httpReq();
   }, []);
 
-
-  return loading ? (
-    <div className="centerContainer">
-      <LoadingScreen />
-    </div>
-  ) : showShopsList ? (
-    <div className="centerContainer">
-      {shopsList.map((data)=> <ShopCard data={data} />)}
-    </div>
-  ) : (
-    <div className="dashboard-container">
-      {/* Left Side Navigation */}
-      <div className="dashboard-navigation">
-        <div
-          className={`nav-item ${
-            activeOption === "Sell Products" ? "active" : ""
-          }`}
-          onClick={() => setActiveOption("Sell Products")}
-        >
-          Sell Products
+  return (
+    <>
+      {loading ? (
+        <div className="centerContainer">
+          <LoadingScreen />
         </div>
-        <div
-          className={`nav-item ${
-            activeOption === "Recent Sales" ? "active" : ""
-          }`}
-          onClick={() => setActiveOption("Recent Sales")}
-        >
-          Recent Sales
-        </div>
-        <div
-          className={`nav-item ${
-            activeOption === "Sales Charts" ? "active" : ""
-          }`}
-          onClick={() => setActiveOption("Sales Charts")}
-        >
-          Sales Charts
-        </div>
+      ) : null}
+      {showShopsList ? (
+      <div className="centerContainer">
+        {shopsList.map((data) => (
+          <ShopCard data={data} />
+        ))}
       </div>
+      ):null}
       {noShops ? (
         <NoShops />
-      ) : (
-        <div className="dashboard-content">
-          content
-          {/* Content for the selected navigation option goes here */}
-        </div>
-      )}
-
-      {/* Right Side Content */}
-    </div>
+      ) : null}
+    </>
   );
 };
 
-export default Dashboard;
+export default Shops;
