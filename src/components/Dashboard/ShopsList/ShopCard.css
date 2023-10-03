@@ -1,5 +1,7 @@
 /* ShopsList.css */
-
+body{
+    background: #EEEEEE;
+}
 /* Shop Card Styles */
 .shop-card {
     width: 50%;
@@ -27,14 +29,14 @@
 /* Shop Name */
 .shop-name {
     font-size: 24px;
-    color: #1e3d59;
+    color: #222831;
     /* Royal blue text color */
     margin-bottom: 10px;
 }
 
 /* Select Button */
 .select-button {
-    background-color: #f7941d;
+    background-color: #00ADB5;
     /* Orange button color */
     color: #fff;
     border: none;
@@ -46,7 +48,7 @@
 }
 
 .select-button:hover {
-    background-color: #1e3d59;
+    background-color: #009ba3;
     /* Royal blue hover color */
 }
 

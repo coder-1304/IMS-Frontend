@@ -1,0 +1,20 @@
+.message-component {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #f7941d;
+    color: #00203b;
+    padding: 10px;
+    text-align: center;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.message-component.visible {
+    opacity: 1;
+}
+
+.message-component.hidden {
+    opacity: 0;
+    pointer-events: none;
+}

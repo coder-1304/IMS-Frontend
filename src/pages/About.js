@@ -51,4 +51,3 @@ const About = () => {
 export default About;
 
 
-// window.location.href="https://www.linkedin.com/in/shannee-ahirwar-4516b1253/"

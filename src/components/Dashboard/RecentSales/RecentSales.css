@@ -1,0 +1,61 @@
+/* Sales Details Table */
+.sales-details-table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 6px #222831;
+    background-color: #EEEEEE;
+}
+
+/* Table Header */
+.sales-details-table th {
+    background-color: #393E46;
+    color: #EEEEEE;
+    padding: 12px;
+    text-align: left;
+
+}
+
+/* Table Rows */
+.sales-details-row {
+    background-color: #fff;
+    transition: background-color 0.2s;
+}
+
+.sales-details-row:hover {
+    background-color: #b5fbff;
+    /* Orange */
+}
+
+.sales-details-row td {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Email Field */
+.sales-details-row td:nth-child(4) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+
+/* Buttons */
+.button {
+    background-color: #0073e6;
+    /* Royal Blue */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-right: 10px;
+}
+
+.button:hover {
+    background-color: #0050aa;
+    /* Darker Blue */
+}
+

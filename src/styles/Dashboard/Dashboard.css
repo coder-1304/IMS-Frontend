@@ -1,21 +1,25 @@
 /* Dashboard.css */
-
+body{
+    background: #EEEEEE;
+}
 /* Container for the entire dashboard */
 .dashboard-container {
     display: flex;
-    min-height: 70vh;
+    /* min-height: 70vh; */
     /* background-color: #f8f9fa; */
     /* Light background color */
     font-family: Arial, sans-serif;
     margin-top: 14px;
+    height: 400px;
+    
 }
 
 /* Left Side Navigation */
 .dashboard-navigation {
     width: 260px;
-    background-color: #1e3d59;
+    background-color: #222831;
     /* Royal blue background color */
-    color: #fff;
+    color: #EEEEEE;
     /* Text color */
     display: flex;
     flex-direction: column;
@@ -23,6 +27,8 @@
     padding: 20px 0;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    position: fixed;
+    margin-right: 300px;
 
 }
 
@@ -34,12 +40,12 @@
 }
 
 .nav-item:hover {
-    background-color: #f7941d;
+    background-color: #00ADB5;
     /* Orange hover color */
 }
 
 .active {
-    background-color: #1e3d59;
+    background-color: #00ADB5;
     /* Royal blue active color */
     border-right: 6px solid #f7941d;
     /* Orange indicator on active */

@@ -3,10 +3,10 @@ import "../styles/Auth/form.css";
 import { useNavigate } from "react-router-dom";
 import LoadingScreen from "../components/Loading/loadingScreen";
 import postData from "../API/postData";
-import "../styles/Auth/form.css";
 import Cookies from "js-cookie";
 
 const AddShop = () => {
+  let navigate = useNavigate();
   const [showError, setShowError] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -45,7 +45,7 @@ const AddShop = () => {
       const response = await postData("/createShop",requestBody);
       if (response.success) {
         alert("Shop Added Successfully");
-        window.location.href = "/dashboard"
+        navigate("/dashboard");
       }else{
         alert(response.message+"\n"+"Error Code: "+response.errorCode);
       }

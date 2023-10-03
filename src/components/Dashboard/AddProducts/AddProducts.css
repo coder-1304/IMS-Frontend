@@ -1,0 +1,104 @@
+/* Container for the add product form */
+.add-product-form {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin: 20px auto;
+    max-width: 500px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-product-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #393E46;
+}
+
+/* Form group styles */
+.form-group {
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #393E46;
+}
+
+/* Text input styles */
+input[type="text"],
+input[type="number"],
+textarea,
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+/* Textarea styles */
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Button styles */
+button[type="button"] {
+    background-color: #00ADB5;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+button[type="button"]:hover {
+    background-color: #00949c;
+}
+
+/* Dropdown select styles */
+select {
+    width: 110px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='6'><polygon fill='%23333' points='0,0 12,0 6,6'/></svg>");
+    background-size: 12px 6px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    padding-right: 30px;
+    color: #222831;
+    outline-color: #222831;
+    text-emphasis-color: black;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    /* margin-right: 100px; */
+}
+
+select option:not(:checked) {
+    background-color: #fff;
+}
+
+select option {
+    /* background-color: red; */
+    margin: 40px;
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 480px) {
+    .add-product-form {
+        padding: 15px;
+    }
+
+    button[type="submit"] {
+        font-size: 16px;
+    }
+}

@@ -6,7 +6,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #f4f4f4;
+    background-color: #EEEEEE;
     /* Background color */
 }
 
@@ -25,7 +25,7 @@
 /* Heading styles */
 .about-text h2 {
     font-size: 24px;
-    color: #1e3d59;
+    color: #222831;
     /* Royal blue text color */
     margin-bottom: 20px;
 }
@@ -34,7 +34,7 @@
 .about-text p {
     font-size: 16px;
     line-height: 1.6;
-    color: #666;
+    color: #393E46;
     /* Text color */
     margin-bottom: 10px;
 }
@@ -60,14 +60,14 @@
 /* Contact info styles */
 .contact-info h3 {
     font-size: 18px;
-    color: #1e3d59;
+    color: #222831;
     /* Royal blue text color */
     margin-bottom: 10px;
 }
 
 .contact-info p {
     font-size: 14px;
-    color: #f7941d;
+    color: #00ADB5;
     /* Orange text color */
     margin-bottom: 5px;
 }

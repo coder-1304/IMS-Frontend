@@ -24,8 +24,8 @@ const Addshop = () => {
       const response = await postData('/verifyOTP',requestBody);
       if(response.success){
         Cookies.set("jwt_token", response.jwt_token);
-        // navigate('/dashboard')
-        window.location.href="/dashboard"
+        navigate('/dashboard')
+        // window.location.href="/dashboard"
       }else{
         setLoading(false);
         alert("Failed: "+response.message+"\n"+"ErrorCode: "+response.errorCode);

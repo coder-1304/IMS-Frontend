@@ -1,8 +1,8 @@
 /* Base button styles */
 .btn-secondary {
-    background-color: #f7941d;
+    background-color: #00ADB5;
     /* Orange background color */
-    color: #fff;
+    color: #EEEEEE;
     /* White text color */
     padding: 10px 20px;
     /* Padding to adjust the button size */
@@ -16,12 +16,12 @@
     /* Transition effect */
     height: 40px;
     /* Fixed height */
-    color: #00203b;
+    color: #EEEEEE;
     font-weight: bold;
 }
 
 /* Hover effect */
 .btn-secondary:hover {
-    background-color: #e37d00;
+    background-color: #009299;
     /* Orange background color on hover */
 }

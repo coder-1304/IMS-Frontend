@@ -9,6 +9,7 @@ body {
 .authContainer {
     display: flex;
     flex-direction: row;
+    background-color: white;
     /* justify-content: end; */
     /* align-items: stretch; */
 }

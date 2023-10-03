@@ -11,13 +11,33 @@ import ShopCard from "../components/Dashboard/ShopsList/ShopCard";
 import "../components/Dashboard/ShopsList/ShopCard.css";
 import Cookies from "js-cookie";
 import SellProducts from "../components/Dashboard/SellProducts/SellProducts";
+import { useNavigate } from "react-router-dom";
+import ShopInfo from "../components/Dashboard/ShopInfo/ShopInfo";
+import AddProducts from "../components/Dashboard/AddProducts/AddProducts";
+import RecentSales from "../components/Dashboard/RecentSales/RecentSales";
 
 const Dashboard = () => {
   const [activeOption, setActiveOption] = useState("Sell Products");
   const [loading, setLoading] = useState(false);
   const shopId = Cookies.get("shopId");
   const shopName = Cookies.get("shopName");
+  let navigate = useNavigate();
+
   useEffect(() => {
+    function alerting() {
+      if (!shopId) {
+        navigate("/shops");
+      }
+    }
+    alerting();
+
+    // productName;
+    // description;
+    // price;
+    // unitId;
+    // shopID;
+    // quantity;
+
     // async function httpReq() {
     //   const response = await getData("/getShops");
     //   if (response.success) {
@@ -39,11 +59,11 @@ const Dashboard = () => {
     //   }
     // }
     // httpReq();
-  }, []);
+  }, [shopId]);
 
   return (
     <>
-      <h1>{shopName}</h1>
+      <ShopInfo shopName={shopName} />
       {loading ? (
         <div className="centerContainer">
           <LoadingScreen />
@@ -85,14 +105,16 @@ const Dashboard = () => {
             Sales Charts
           </div>
         </div>
+      <div style={{width: 260,height:1}}></div>
+
         <div className="dashboard-content">
-          {activeOption == "Sell Products" ? <SellProducts/> : null}
-          {activeOption == "Recent Sales" ? <h1>Recent Sales</h1> : null}
+          {activeOption == "Sell Products" ? <SellProducts /> : null}
+          {activeOption == "Add Products" ? <AddProducts /> : null}
+          {activeOption == "Recent Sales" ? <RecentSales/> : null}
           {activeOption == "Sales Charts" ? <h1>Sales Charts</h1> : null}
           {/* Content for the selected navigation option goes here */}
         </div>
       </div>
-      );
     </>
   );
 };

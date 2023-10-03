@@ -54,8 +54,6 @@ const Login = () => {
     if (response.success) {
       Cookies.set("jwt_token", response.jwt_token);
       Cookies.set("email", email);
-      // navigate("/dashboard");
-      // window.location.href = "/dashboard"
       navigate('/shops')
 
     } else {

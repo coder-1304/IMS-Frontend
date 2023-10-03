@@ -4,7 +4,7 @@ import { logo } from "../assets";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
-
+import logout from "../constants/logout";
 
 function Navbar() {
   // State to manage the dropdown menu
@@ -14,11 +14,6 @@ function Navbar() {
   const toggleDropdown = () => {
     setDropdownOpen(!isDropdownOpen);
   };
-  function logOut(){
-    Cookies.remove('jwt_token');
-    Cookies.remove('email');
-    window.location.href="/";
-  }
 
   return (
     <nav className="navbar">
@@ -43,7 +38,7 @@ function Navbar() {
           
           <div className="dropdown-content">
             <Link to="/profile">Profile</Link>
-            <Link onClick={logOut}>Log Out</Link>
+            <Link onClick={logout} to="/">Log Out</Link>
           </div>
         </div>
       <img className="websiteLogo" src={logo} alt="" />

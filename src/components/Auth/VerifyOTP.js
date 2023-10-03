@@ -4,7 +4,6 @@ import LoadingScreen from "../Loading/loadingScreen";
 import postData from "../../API/postData";
 import { useNavigate } from "react-router-dom";
 
-
 const VerifyOTP = () => {
   let navigate = useNavigate();
   console.log(Cookies.get("jwt_token"));
@@ -17,23 +16,28 @@ const VerifyOTP = () => {
     const inputValue = e.target.value;
     const digitOnly = inputValue.replace(/\D/g, "");
     setOtp(digitOnly);
-    if(e.target.value.length==4){
+    if (e.target.value.length == 4) {
       setShowError(false);
     }
   }
-  async function fetchAPI(){
-    const requestBody ={
+  async function fetchAPI() {
+    const requestBody = {
       email: Cookies.get("email"),
-      otp: otp
-    }
-    const response = await postData('/verifyOTP',requestBody);
-    if(response.success){
+      otp: otp,
+    };
+    const response = await postData("/verifyOTP", requestBody);
+    if (response.success) {
       Cookies.set("jwt_token", response.jwt_token);
-      // navigate('/dashboard')
-      window.location.href="/dashboard"
-    }else{
+      navigate("/dashboard");
+    } else {
       setLoading(false);
-      alert("Failed: "+response.message+"\n"+"ErrorCode: "+response.errorCode);
+      alert(
+        "Failed: " +
+          response.message +
+          "\n" +
+          "ErrorCode: " +
+          response.errorCode
+      );
     }
   }
   function handleSubmit() {
@@ -63,9 +67,7 @@ const VerifyOTP = () => {
             onChange={handleChange}
           />
         </div>
-        { showError ? (
-          <p className="errorText">Enter a valid OTP</p>
-        ) : null}
+        {showError ? <p className="errorText">Enter a valid OTP</p> : null}
         {loading ? (
           <LoadingScreen />
         ) : (

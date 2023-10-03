@@ -215,7 +215,7 @@ const Register = () => {
         {loading ? (
           <LoadingScreen />
         ) : (
-          <button onClick={handleSubmit} type="button">
+          <button className="btn-primary" onClick={handleSubmit} type="button">
             Submit
           </button>
         )}
