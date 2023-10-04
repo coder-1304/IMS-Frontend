@@ -6,13 +6,11 @@ import { useNavigate } from "react-router-dom";
 
 const VerifyOTP = () => {
   let navigate = useNavigate();
-  console.log(Cookies.get("jwt_token"));
   let [otp, setOtp] = useState("");
   let [showError, setShowError] = useState(false);
   let [loading, setLoading] = useState(false);
 
   function handleChange(e) {
-    // console.log(e.target.value);
     const inputValue = e.target.value;
     const digitOnly = inputValue.replace(/\D/g, "");
     setOtp(digitOnly);
@@ -27,8 +25,10 @@ const VerifyOTP = () => {
     };
     const response = await postData("/verifyOTP", requestBody);
     if (response.success) {
+      Cookies.set("isLoggedIn", true);
       Cookies.set("jwt_token", response.jwt_token);
-      navigate("/dashboard");
+      Cookies.set("role", response.role);
+      navigate("/shops");
     } else {
       setLoading(false);
       alert(

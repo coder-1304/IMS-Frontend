@@ -4,9 +4,15 @@ import { useNavigate } from "react-router-dom";
 import LoadingScreen from "../components/Loading/loadingScreen";
 import postData from "../API/postData";
 import Cookies from "js-cookie";
+import "../styles/common.css"
+import verifyLogin from "../constants/verifyLogin";
+import UserNotLoggedIn from "../components/UserNotLoggedIn/UserNotLoggedIn";
+import Unauthorized from "../components/Unauthorized/Unauthorized";
+
 
 const AddShop = () => {
   let navigate = useNavigate();
+
   const [showError, setShowError] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -23,6 +29,9 @@ const AddShop = () => {
   const [stateValidation, setStateValidation] = useState(false);
   const [countryValidation, setCountryValidation] = useState(false);
   const [phoneValidation, setPhoneValidation] = useState(false);
+  if(!verifyLogin()){
+    return <UserNotLoggedIn/>
+  }
 
   const handleSubmit = async () => {
     if (
@@ -42,12 +51,12 @@ const AddShop = () => {
         country: country,
         phone: phone,
       };
-      const response = await postData("/createShop",requestBody);
+      const response = await postData("/createShop", requestBody);
       if (response.success) {
         alert("Shop Added Successfully");
         navigate("/dashboard");
-      }else{
-        alert(response.message+"\n"+"Error Code: "+response.errorCode);
+      } else {
+        alert(response.message + "\n" + "Error Code: " + response.errorCode);
       }
     } else {
       setShowError(true);
@@ -125,7 +134,8 @@ const AddShop = () => {
         break;
     }
   };
-  return (
+  return <>
+  {Cookies.get("role")!="Admin"?<Unauthorized message="Only Admin can add shops"/>:(
     <div className="centerContainer">
       <div className="addShopContainer">
         <form className="form" action="">
@@ -223,6 +233,8 @@ const AddShop = () => {
         </form>
       </div>
     </div>
-  );
+  )}
+  
+  </>;
 };
 export default AddShop;

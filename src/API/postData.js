@@ -1,28 +1,24 @@
 import serverInfo from "../constants/serverInfo";
 import Cookies from "js-cookie";
 
-
 async function postData(url, data) {
   url = `${serverInfo.host}${url}`;
-  console.log('fetching: '+url);
-  
-  try {
 
+  try {
     const response = await fetch(url, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        'Authorization': `Bearer ${Cookies.get("jwt_token")}`
+        Authorization: `Bearer ${Cookies.get("jwt_token")}`,
       },
       body: JSON.stringify(data),
     });
-    console.log(response);
 
     if (!response.ok) {
       return {
-        success : false,
+        success: false,
         errorCode: 0,
-        message: "HTTP Request Failed"
+        message: "HTTP Request Failed",
       };
     }
 
@@ -32,8 +28,8 @@ async function postData(url, data) {
     return {
       success: false,
       errorCode: 0,
-      message: "HTTP Request Failed"
-    }
+      message: "HTTP Request Failed",
+    };
     throw error; // Rethrow the error to handle it further if needed
   }
 }

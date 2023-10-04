@@ -3,7 +3,6 @@ import Cookies from "js-cookie";
 
 async function getData(url) {
   url = `${serverInfo.host}${url}`;
-  console.log('fetching: ' + url);
 
   try {
     const response = await fetch(url, {
@@ -13,8 +12,6 @@ async function getData(url) {
         'Authorization': `Bearer ${Cookies.get("jwt_token")}`
       },
     });
-
-    console.log(response);
 
     if (!response.ok) {
       return {

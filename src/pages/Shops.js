@@ -10,13 +10,17 @@ import "../styles/common.css";
 import "../styles/AddShop/AddShop.css";
 import ShopCard from "../components/Dashboard/ShopsList/ShopCard";
 import "../components/Dashboard/ShopsList/ShopCard.css";
+import verifyLogin from "../constants/verifyLogin";
+import UserNotLoggedIn from "../components/UserNotLoggedIn/UserNotLoggedIn";
 
 const Shops = () => {
+  console.log("User Role is: " + Cookies.get("role"));
   const [activeOption, setActiveOption] = useState("Sell Products");
   const [loading, setLoading] = useState(true);
   const [noShops, setNoShops] = useState(false);
   const [showShopsList, setShowShopsList] = useState(true);
   const [shopsList, setShopsList] = useState([]);
+
   useEffect(() => {
     async function httpReq() {
       const response = await getData("/getShops");
@@ -41,6 +45,10 @@ const Shops = () => {
     httpReq();
   }, []);
 
+  if (!verifyLogin()) {
+    return <UserNotLoggedIn />;
+  }
+
   return (
     <>
       {loading ? (
@@ -49,15 +57,13 @@ const Shops = () => {
         </div>
       ) : null}
       {showShopsList ? (
-      <div className="centerContainer">
-        {shopsList.map((data) => (
-          <ShopCard data={data} />
-        ))}
-      </div>
-      ):null}
-      {noShops ? (
-        <NoShops />
+        <div className="centerContainer">
+          {shopsList.map((data) => (
+            <ShopCard data={data} />
+          ))}
+        </div>
       ) : null}
+      {noShops ? <NoShops /> : null}
     </>
   );
 };

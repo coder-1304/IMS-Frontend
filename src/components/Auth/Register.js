@@ -95,10 +95,8 @@ const Register = () => {
     }
     if (isValidEmail(e.target.value)) {
       setEmailValidation(true);
-      // console.log("valid");
     } else {
       setEmailValidation(false);
-      // console.log("Invalid");
     }
   };
   const checkPasswords = () => {

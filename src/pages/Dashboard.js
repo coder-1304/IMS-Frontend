@@ -15,6 +15,9 @@ import { useNavigate } from "react-router-dom";
 import ShopInfo from "../components/Dashboard/ShopInfo/ShopInfo";
 import AddProducts from "../components/Dashboard/AddProducts/AddProducts";
 import RecentSales from "../components/Dashboard/RecentSales/RecentSales";
+import SalesChart from "../components/Dashboard/SalesChart/SalesChart";
+import verifyLogin from "../constants/verifyLogin";
+import UserNotLoggedIn from "../components/UserNotLoggedIn/UserNotLoggedIn";
 
 const Dashboard = () => {
   const [activeOption, setActiveOption] = useState("Sell Products");
@@ -22,7 +25,7 @@ const Dashboard = () => {
   const shopId = Cookies.get("shopId");
   const shopName = Cookies.get("shopName");
   let navigate = useNavigate();
-
+  
   useEffect(() => {
     function alerting() {
       if (!shopId) {
@@ -30,36 +33,10 @@ const Dashboard = () => {
       }
     }
     alerting();
-
-    // productName;
-    // description;
-    // price;
-    // unitId;
-    // shopID;
-    // quantity;
-
-    // async function httpReq() {
-    //   const response = await getData("/getShops");
-    //   if (response.success) {
-    //     if (response.result.length == 0) {
-    //       setNoShops(true);
-    //     }else{
-    //       setShopsList(response.result)
-    //     }
-    //     setLoading(false);
-    //     // alert("Success " + "Length of shops: " + response.result.length);
-    //   } else {
-    //     alert(
-    //       "Failed: " +
-    //         response.message +
-    //         "\n" +
-    //         "ErrorCode: " +
-    //         response.errorCode
-    //     );
-    //   }
-    // }
-    // httpReq();
   }, [shopId]);
+  if(!verifyLogin()){
+    return <UserNotLoggedIn/>
+  }
 
   return (
     <>
@@ -105,13 +82,13 @@ const Dashboard = () => {
             Sales Charts
           </div>
         </div>
-      <div style={{width: 260,height:1}}></div>
+        <div style={{ width: 260, height: 1 }}></div>
 
         <div className="dashboard-content">
           {activeOption == "Sell Products" ? <SellProducts /> : null}
           {activeOption == "Add Products" ? <AddProducts /> : null}
-          {activeOption == "Recent Sales" ? <RecentSales/> : null}
-          {activeOption == "Sales Charts" ? <h1>Sales Charts</h1> : null}
+          {activeOption == "Recent Sales" ? <RecentSales /> : null}
+          {activeOption == "Sales Charts" ? <SalesChart /> : null}
           {/* Content for the selected navigation option goes here */}
         </div>
       </div>

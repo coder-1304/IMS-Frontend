@@ -1,9 +1,10 @@
 import { Login, Register } from "../components/Auth";
 import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "../styles/Auth/auth.css";
 import { authImage } from "../assets";
 import VerifyOTP from "../components/Auth/VerifyOTP";
+import verifyLogin from "../constants/verifyLogin";
 
 const Auth = () => {
   let [newUser, setNewUser] = useState(true);
@@ -11,9 +12,15 @@ const Auth = () => {
   const text2 = "New User? Click here to Register";
   let [text, setText] = useState(text1);
   let navigate = useNavigate();
+
+  useEffect(() => {
+    if (verifyLogin()) {
+      navigate("/shops");
+    }
+  }, []);
+
   function setUser() {
     if (text == text1) {
-      // navigate('/login').
       setNewUser(false);
       setText(text2);
     } else {

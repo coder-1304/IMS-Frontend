@@ -3,6 +3,7 @@ import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import LoadingScreen from "../Loading/loadingScreen";
 import postData from "../../API/postData";
+import VerifyOTP from "./VerifyOTP";
 
 function isValidEmail(email) {
   // Regular expression for basic email validation
@@ -13,12 +14,11 @@ function isValidEmail(email) {
 }
 
 const Login = () => {
-  let navigate = useNavigate();
-  // console.log(Cookies.get("jwt_token"));
   let [email, setEmail] = useState("");
   let [emailValidation, setEmailValidation] = useState(false);
   let [password, setPassword] = useState("");
   let [passwordValidation, setPasswordValidation] = useState(false);
+  let [otpNotVerified, SetOtpNotVerified] = useState(false);
 
   let [showError, setShowError] = useState(false);
   let [loading, setLoading] = useState(false);
@@ -52,68 +52,83 @@ const Login = () => {
     };
     const response = await postData("/login", requestBody);
     if (response.success) {
+
+      Cookies.set("isLoggedIn", true);
       Cookies.set("jwt_token", response.jwt_token);
       Cookies.set("email", email);
-      navigate('/shops')
-
+      Cookies.set("role", response.role);
+      window.location.href = "/";
     } else {
-      setLoading(false);
-      alert(
-        "Failed: " +
+      if (response.errorCode === 16) {
+        Cookies.set("email", email);
+
+        SetOtpNotVerified(true);
+        // alert("Please Verify OTP");
+      } else {
+        setLoading(false);
+        alert(
+          "Failed: " +
           response.message +
           "\n" +
           "ErrorCode: " +
           response.errorCode
-      );
+        );
+      }
     }
   }
   function handleSubmit() {
-    if(passwordValidation&&emailValidation){
+    if (passwordValidation && emailValidation) {
       // alert("Verified");
       fetchAPI();
       setLoading(true);
-    }else{
+    } else {
       setShowError(true);
     }
   }
 
-  return (
-    <div className="loginForm">
-      <form className="form" action="">
-        <h2 style={{color: "#00264d"}}>Login</h2>
-        <div>
-          <label htmlFor="email">Enter Email:</label>
-          <input
-            type="email"
-            id="email"
-            value={email}
-            onChange={handleEmailChange}
-          />
+  return <>
+    {otpNotVerified ? <VerifyOTP /> :
+      (
+        <div className="loginForm">
+          <form className="form" action="">
+            <h2 style={{ color: "#00264d" }}>Login</h2>
+            <div>
+              <label htmlFor="email">Enter Email:</label>
+              <input
+                type="email"
+                id="email"
+                value={email}
+                onChange={handleEmailChange}
+              />
+            </div>
+            {showError && !emailValidation ? (
+              <p className="errorText">Enter a valid email</p>
+            ) : null}
+            <div>
+              <label htmlFor="password">Enter Password:</label>
+              <input
+                type="password"
+                id="password"
+                value={password}
+                onChange={handlePasswordChange}
+              />
+            </div>
+            {showError && !passwordValidation ? (
+              <p className="errorText">Enter a valid password</p>
+            ) : null}
+            {loading ? (
+              <LoadingScreen />
+            ) : (
+              <button type="button" onClick={handleSubmit}>
+                Login
+              </button>
+            )}
+          </form>
         </div>
-        {showError && !emailValidation ? (
-          <p className="errorText">Enter a valid email</p>
-        ) : null}
-        <div>
-          <label htmlFor="password">Enter Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        {showError && !passwordValidation ? (
-          <p className="errorText">Enter a valid password</p>
-        ) : null}
-        {loading ? (
-          <LoadingScreen />
-        ) : (
-          <button type="button" onClick={handleSubmit}>
-            Login
-          </button>
-        )}
-      </form>
-    </div>
-  );
+      )
+
+    }
+
+  </>;
 };
 export default Login;

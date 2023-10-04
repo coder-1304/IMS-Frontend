@@ -6,6 +6,9 @@ function logout(){
     Cookies.remove("email");
     Cookies.remove("shopId");
     Cookies.remove("shopName");
+    Cookies.remove("role");
+    Cookies.remove("isLoggedIn");
+    document.getElementById("user-email").textContent="";
     window.location.href="/";
 }
 

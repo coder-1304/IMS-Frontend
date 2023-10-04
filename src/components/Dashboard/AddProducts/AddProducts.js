@@ -6,16 +6,13 @@ import postData from "../../../API/postData";
 import LoadingScreen from "../../Loading/loadingScreen";
 import "./AddProducts.css";
 import "../../../styles/buttons.css";
+import Unauthorized from "../../Unauthorized/Unauthorized";
 
 const AddProducts = () => {
   const [loading, setLoading] = useState(false);
   const [productAdded, setProductAdded] = useState(false);
   const [showForm, setShowForm] = useState(true);
-  const navigate = useNavigate();
 
-  const onSubmit = () => {
-    console.log(productInfo);
-  };
   const [productInfo, setProductInfo] = useState({
     productName: "",
     description: "",
@@ -25,20 +22,12 @@ const AddProducts = () => {
   });
 
   async function postAPI() {
-    let {
-      productName,
-      price,
-      unitId,
-      quantity
-    } = productInfo;
-    if (!productName ||
-      !price ||
-      !unitId ||
-      !quantity) {
+    let { productName, price, unitId, quantity } = productInfo;
+    if (!productName || !price || !unitId || !quantity) {
       alert("Please fill all fields");
       return;
     }
-    if(price<=0 || quantity<=0){
+    if (price <= 0 || quantity <= 0) {
       alert("Available quantity and price must be more than 0");
       return;
     }
@@ -59,8 +48,6 @@ const AddProducts = () => {
       quantity: parseInt(productInfo.quantity),
       shopId: parseInt(Cookies.get("shopId")),
     };
-    console.log("Request Body:");
-    console.log(requestBody);
     const response = await postData("/addProduct", requestBody);
     if (response.success) {
       setProductAdded(true);
@@ -69,10 +56,10 @@ const AddProducts = () => {
       setLoading(false);
       alert(
         "Failed: " +
-        response.message +
-        "\n" +
-        "ErrorCode: " +
-        response.errorCode
+          response.message +
+          "\n" +
+          "ErrorCode: " +
+          response.errorCode
       );
       setShowForm(true);
     }
@@ -86,10 +73,6 @@ const AddProducts = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(productInfo); // Call the onSubmit function with the productInfo data
-  };
 
   const addAnotherProduct = () => {
     setLoading(false);
@@ -111,19 +94,18 @@ const AddProducts = () => {
           Product Added Successfully
           <br />
           <br />
-          <button
-            onClick={addAnotherProduct}
-            className="btn-secondary"
-          >
+          <button onClick={addAnotherProduct} className="btn-secondary">
             Add Another Product
           </button>
         </div>
       ) : null}
       {loading ? <LoadingScreen /> : null}
-      {showForm ? (
+      {Cookies.get("role") != "Admin" ? (
+        <Unauthorized message="Only Admin can add products" />
+      ) : showForm ? (
         <div className="add-product-form">
           <h2>Add Product</h2>
-          <form onSubmit={handleSubmit}>
+          <form >
             <div className="form-group">
               <label htmlFor="productName">Product Name:</label>
               <input
@@ -170,7 +152,9 @@ const AddProducts = () => {
               </select>
             </div>
             <div className="form-group">
-              <label htmlFor="quantity">Available Quantity: (in Pieces/Grams/Millilitres)</label>
+              <label htmlFor="quantity">
+                Available Quantity: (in Pieces/Grams/Millilitres)
+              </label>
               <input
                 type="number"
                 id="quantity"

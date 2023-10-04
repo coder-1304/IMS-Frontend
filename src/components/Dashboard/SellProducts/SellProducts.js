@@ -6,14 +6,18 @@ import postData from "../../../API/postData";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/common.css";
 import "./SellProducts.css";
+import EditProduct from "../EditProduct/EditProduct";
 
 const SellProducts = () => {
+  console.log("Selling");
   const [loading, setLoading] = useState(true);
   const [noProducts, setNoProducts] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
   const [filteredProducts, setFiteredProducts] = useState(false);
   const [noSearchResult, setNoSearchResult] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState({});
   const [products, setProducts] = useState([]);
+  const [showProductEditPage, setShowProductEditPage] = useState(false);
   const navigate = useNavigate();
 
   // const [quantityToSell, setQuantityToSell] = useState(0);
@@ -43,7 +47,7 @@ const SellProducts = () => {
       alert("Please enter a quantity to sell");
       return;
     }
-    if(quantity<=0){
+    if (quantity <= 0) {
       alert("Please enter a valid quantity");
       return;
     }
@@ -57,6 +61,17 @@ const SellProducts = () => {
     }
     // console.log(product.ProductName);
   };
+
+  const handleEditClick = (product) => {
+    setSelectedProduct(product);
+    setShowProductEditPage(true);
+    setShowProducts(false);
+  }
+
+  const showProductsFunc = () => {
+    setLoading(true);
+    httpReq();
+  }
 
   // const products = [
   //   {
@@ -95,22 +110,20 @@ const SellProducts = () => {
     if (response.success) {
       if (response.result.length == 0) {
         setNoProducts(true);
-        setLoading(false);
       } else {
         setProducts(response.result);
         setFiteredProducts(response.result);
-        console.log(response.result);
         setShowProducts(true);
-        setLoading(false);
       }
+      setLoading(false);
     } else {
-      alert(
-        "Failed: " +
-        response.message +
-        "\n" +
-        "ErrorCode: " +
-        response.errorCode
-      );
+      // alert(
+      //   "Failed: " +
+      //   response.message +
+      //   "\n" +
+      //   "ErrorCode: " +
+      //   response.errorCode
+      // );
     }
   }
   useEffect(() => {
@@ -120,6 +133,8 @@ const SellProducts = () => {
   return (
     <div>
       {loading ? <LoadingScreen /> : null}
+
+      {showProductEditPage ? <EditProduct product={selectedProduct} showProductsFunc={showProductsFunc} /> : null}
       {noProducts ? (
         <div className="centerContainer">
           No Products Added! Please Add Products
@@ -198,6 +213,7 @@ const SellProducts = () => {
               <div className="product-id">
                 <span className="id-label">ID:</span> {ProductID}
               </div>
+              {Cookies.get("role")=="Admin"?<button className="edit-button" onClick={() => { handleEditClick(product) }}>Edit Product</button>:null}
             </div>
           );
         })
