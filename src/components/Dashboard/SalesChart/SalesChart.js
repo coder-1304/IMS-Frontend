@@ -11,7 +11,6 @@ const SalesChart = () => {
   useEffect(() => {
     async function recentSalesAPI() {
       const url = `/getGroupedSalesData/${Cookies.get("shopId")}/10`;
-      console.log("URL is: " + url);
       const response = await getData(url);
       if (response.success) {
         if(response.result.length==0){
@@ -29,10 +28,8 @@ const SalesChart = () => {
         Total_Sale_In_Rupee: parseFloat(item.Total_Sale_In_Rupee),
       }));
       setData(newResult);
-      console.log(data);
     }
     recentSalesAPI();
-    // console.log("Recent Sales");
   }, []);
   return <>{data.length !== 0 ? <BarChartShow data={data}/> : null}</>;
 };

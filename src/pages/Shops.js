@@ -14,7 +14,6 @@ import verifyLogin from "../constants/verifyLogin";
 import UserNotLoggedIn from "../components/UserNotLoggedIn/UserNotLoggedIn";
 
 const Shops = () => {
-  console.log("User Role is: " + Cookies.get("role"));
   const [activeOption, setActiveOption] = useState("Sell Products");
   const [loading, setLoading] = useState(true);
   const [noShops, setNoShops] = useState(false);

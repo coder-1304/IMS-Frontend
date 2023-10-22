@@ -16,7 +16,6 @@ const EditProduct = (props) => {
     const [loading, setLoading] = useState(false);
     const [productAdded, setProductAdded] = useState(false);
     const [showForm, setShowForm] = useState(true);
-    console.log(props);
 
     if(Cookies.get("role")!="Admin"){
         alert("Only Admin can modify products");
@@ -44,7 +43,6 @@ const EditProduct = (props) => {
 
 
 
-    console.log(productInfo);
 
     async function postAPI() {
         let { productName, price, unitId, quantity } = productInfo;
@@ -52,7 +50,7 @@ const EditProduct = (props) => {
             alert("Please fill all fields");
             return;
         }
-        if (price <= 0 || quantity <= 0) {
+        if (price <= 0 || quantity < 0) {
             alert("Available quantity and price must be more than 0");
             return;
         }
@@ -75,8 +73,6 @@ const EditProduct = (props) => {
             shopId: parseInt(Cookies.get("shopId")),
             productId: ProductID,
         };
-        console.log("Request Body:");
-        console.log(requestBody);
         const response = await postData("/editProduct", requestBody);
         if (response.success) {
             setProductAdded(true);

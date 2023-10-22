@@ -9,7 +9,6 @@ import "./SellProducts.css";
 import EditProduct from "../EditProduct/EditProduct";
 
 const SellProducts = () => {
-  console.log("Selling");
   const [loading, setLoading] = useState(true);
   const [noProducts, setNoProducts] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
@@ -36,7 +35,6 @@ const SellProducts = () => {
       alert('Sold Successfully\n' + "Total Amount: " + response.totalAmount);
     } else {
       alert("Something went wrong");
-      console.log(response);
     }
     httpReq();
   }
@@ -59,7 +57,6 @@ const SellProducts = () => {
     } else {
       sellProductAPI(productId, quantity)
     }
-    // console.log(product.ProductName);
   };
 
   const handleEditClick = (product) => {
@@ -72,17 +69,6 @@ const SellProducts = () => {
     setLoading(true);
     httpReq();
   }
-
-  // const products = [
-  //   {
-  //     Description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  //     Price: 19.99,
-  //     ProductID: 1,
-  //     ProductName: "Product A",
-  //     Quantity: 10,
-  //     UnitId: "ABC123",
-  //   },
-  // ];
 
   const handleSearch = () => {
     let searchText = document.getElementById("searchField").value;
@@ -98,9 +84,6 @@ const SellProducts = () => {
   };
 
   async function httpReq() {
-    // setLoading(false);
-    // setShowProducts(false);
-    // setLoading(true);
     const shopId = Cookies.get("shopId");
     if (!shopId) {
       navigate("/shops");
@@ -172,6 +155,7 @@ const SellProducts = () => {
             Quantity,
             UnitId,
           } = product;
+
           let unit = "Pieces";
           if (UnitId == 2) {
             unit = "Grams";
@@ -201,19 +185,23 @@ const SellProducts = () => {
                   className="quantity-input"
                   id={ProductID}
                 />
-                <button
+                {Quantity != 0 ? <button
                   onClick={() => {
                     handleSellClick(ProductID);
                   }}
                   className="sell-button"
                 >
                   Sell
-                </button>
+                </button> : <button
+                  className="out-of-stock-button"
+                >
+                  Out of Stock
+                </button>}
               </div>
               <div className="product-id">
                 <span className="id-label">ID:</span> {ProductID}
               </div>
-              {Cookies.get("role")=="Admin"?<button className="edit-button" onClick={() => { handleEditClick(product) }}>Edit Product</button>:null}
+              {Cookies.get("role") == "Admin" ? <button className="edit-button" onClick={() => { handleEditClick(product) }}>Edit Product</button> : null}
             </div>
           );
         })

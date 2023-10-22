@@ -23,9 +23,7 @@ const RecentSales = () => {
     useEffect(() => {
         async function recentSalesAPI() {
             const url = `/getSalesData/${Cookies.get("shopId")}`;
-            console.log("URL is: " + url);
             const response = await getData(url);
-            console.log(response.result);
             if (response.success) {
                 let arrayOfObjects = [...response.result];
                 arrayOfObjects.sort((a, b) => new Date(b.SaleDate) - new Date(a.SaleDate));
@@ -34,11 +32,9 @@ const RecentSales = () => {
             } else {
                 alert("Something went wrong")
             }
-            // console.log("Response came");
-            // console.log(response);
+
         }
         recentSalesAPI();
-        // console.log("Recent Sales");
     }, []);
     return <>
         {loading ? <LoadingScreen /> :
